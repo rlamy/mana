@@ -9,4 +9,5 @@ setup(name='mana',
       license='MIT',
       keywords='matrix matrices',
       packages=['mana'],
+      requires=['numpy'],
       )
