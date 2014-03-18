@@ -10,3 +10,7 @@ def test_basic():
     N2 = M * 2
     assert np.all(N1.array == np.asarray([[0, 2], [2, 0]]))
     assert np.all(N2.array == np.asarray([[0, 2], [2, 0]]))
+    P = M + M
+    assert np.all(P.array == np.asarray([[0, 2], [2, 0]]))
+    Q = M - M
+    assert np.all(Q.array == np.asarray([[0, 0], [0, 0]]))

@@ -6,6 +6,21 @@ class Matrix(object):
     def __init__(self, arr):
         self.array = arr
 
+    def __neg__(self):
+        return Matrix(-self.array)
+
+    def __add__(self, other):
+        if isinstance(other, Matrix):
+            return Matrix(self.array + other.array)
+        else:
+            return NotImplemented
+
+    def __sub__(self, other):
+        if isinstance(other, Matrix):
+            return self + (-other)
+        else:
+            return NotImplemented
+
     def __mul__(self, other):
         if isinstance(other, Matrix):
             return Matrix(np.dot(self.array, other.array))
