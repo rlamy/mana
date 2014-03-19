@@ -4,13 +4,13 @@ from mana import Matrix
 def test_basic():
     arr = np.asarray([[0, 1], [1, 0]])
     M = Matrix(arr)
-    arr2 = (M * M).array
-    assert np.all(arr2 == np.asarray([[1, 0], [0, 1]]))
-    N1 = 2 * M
-    N2 = M * 2
-    assert np.all(N1.array == np.asarray([[0, 2], [2, 0]]))
-    assert np.all(N2.array == np.asarray([[0, 2], [2, 0]]))
-    P = M + M
-    assert np.all(P.array == np.asarray([[0, 2], [2, 0]]))
-    Q = M - M
-    assert np.all(Q.array == np.asarray([[0, 0], [0, 0]]))
+    N = Matrix(2*arr)
+    I = Matrix(np.eye(2))
+    assert M == M
+    assert M != N
+
+    assert M * M == I
+    assert 2 * M == N
+    assert M * 2 == N
+    assert M + M == N
+    assert N - M == M

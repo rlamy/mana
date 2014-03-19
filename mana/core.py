@@ -6,6 +6,15 @@ class Matrix(object):
     def __init__(self, arr):
         self.array = arr
 
+    def __eq__(self, other):
+        if type(other) is not type(self):
+            return False
+        return (other.array.shape == self.array.shape and
+                np.all(other.array == self.array))
+
+    def __ne__(self, other):
+        return not (self == other)
+
     def __neg__(self):
         return Matrix(-self.array)
 
