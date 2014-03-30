@@ -1,5 +1,12 @@
 import numpy as np
 
+def asmatrix(arg):
+    """Create a matrix"""
+    arr = np.asarray(arg)
+    if len(arr.shape) != 2:
+        raise ValueError("Matrices must be created from a rank-2 array")
+    return Matrix(arr)
+
 class Matrix(object):
     """Represents a matrix"""
 

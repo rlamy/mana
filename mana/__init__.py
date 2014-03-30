@@ -1,1 +1,1 @@
-from .core import Matrix
+from .core import asmatrix, Matrix
