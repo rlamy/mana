@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from mana import asmatrix, Matrix
+from mana import asmatrix, Matrix, asvector
 
 def test_asmatrix():
     M = asmatrix(np.eye(3))
@@ -22,3 +22,9 @@ def test_basic():
     assert M * 2 == N
     assert M + M == N
     assert N - M == M
+
+def test_Vector_basic():
+    u = asvector([1, 2, 3])
+    v = asvector([4, 2, 1])
+    assert u + v == asvector([5, 4, 4])
+    assert u - v == asvector([-3, 0, 2])

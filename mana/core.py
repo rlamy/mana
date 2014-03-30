@@ -7,11 +7,7 @@ def asmatrix(arg):
         raise ValueError("Matrices must be created from a rank-2 array")
     return Matrix(arr)
 
-class Matrix(object):
-    """Represents a matrix"""
-
-    def __init__(self, arr):
-        self.array = arr
+class Base(object):
 
     def __eq__(self, other):
         if type(other) is not type(self):
@@ -21,6 +17,13 @@ class Matrix(object):
 
     def __ne__(self, other):
         return not (self == other)
+
+
+class Matrix(Base):
+    """Represents a matrix"""
+
+    def __init__(self, arr):
+        self.array = arr
 
     def __neg__(self):
         return Matrix(-self.array)
@@ -48,5 +51,31 @@ class Matrix(object):
     def __rmul__(self, other):
         if np.isscalar(other):
             return Matrix(other * self.array)
+        else:
+            return NotImplemented
+
+def asvector(arg):
+    """Create a vector"""
+    arr = np.asarray(arg)
+    if len(arr.shape) != 1:
+        raise ValueError("Vectors must be created from one-dimensional objects")
+    return Vector(arr)
+
+
+class Vector(Base):
+    """Represents a column vector"""
+
+    def __init__(self, array):
+        self.array = array
+
+    def __add__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.array + other.array)
+        else:
+            return NotImplemented
+
+    def __sub__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.array - other.array)
         else:
             return NotImplemented
